@@ -12,7 +12,7 @@ public class SimpleKafkaConsumerService {
     @Getter
     private List<String> messages = new ArrayList<>();
 
-    @KafkaListener(id = "Starship", topics = {"server.starship"}, containerFactory = "singleFactory")
+    @KafkaListener(groupId = "notifications", topics = "movie")
     public void consume(String message) {
         messages.add(message);
     }
