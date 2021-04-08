@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    host: rabbitmq.default.svc.cluster.local
+    host: rabbitmq
     password: admin
     port: 5672
     username: admin
