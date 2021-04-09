@@ -25,9 +25,9 @@ public class HelloController {
         return "Hello! Notification microservice is on Kubernetes now!";
     }
 
-    @GetMapping("/emit/{message}")
-    String emitToMovieQueue(@PathVariable String message) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, message);
+    @GetMapping("/emit/{service}/{message}")
+    String emitToMovieQueue(@PathVariable String message , @PathVariable String service) {
+        rabbitTemplate.convertAndSend(service+".exchange", service+".routingkey", message);
         return "Message sent";
     }
 }
