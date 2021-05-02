@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,9 +24,10 @@ public class HelloController {
         return "Hello! Notification microservice is on Kubernetes now!";
     }
 
-    @GetMapping("/emit/{message}")
-    String emitToMovieQueue(@PathVariable String message) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, message);
+    @GetMapping("/emit/{service}/{message}")
+    String emitToMovieQueue(@PathVariable(name = "message") String message,
+                            @PathVariable(name = "service") String service) {
+        rabbitTemplate.convertAndSend(service + ".exchange", service + ".routingkey", message);
         return "Message sent";
     }
 }
