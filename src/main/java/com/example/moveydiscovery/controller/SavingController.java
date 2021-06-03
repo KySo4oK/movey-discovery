@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/savings")
+@RequestMapping("/notification/savings")
 public class SavingController {
     private static final Logger log = Logger.getLogger(String.valueOf(SavingController.class));
     private final SavingsService service;

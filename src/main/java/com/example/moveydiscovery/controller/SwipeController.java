@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/swipes")
+@RequestMapping("/notification/swipes")
 public class SwipeController {
     private static final Logger log = Logger.getLogger(String.valueOf(SwipeController.class));
     private final SwipeService swipeService;
