@@ -9,14 +9,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/swipes")
 public class SwipeController {
+    private static final Logger log = Logger.getLogger(String.valueOf(SwipeController.class));
     private final SwipeService swipeService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     void saveSwipe(@RequestBody Swipe swipe) {
+        log.info("saving swipe - " + swipe);
         swipeService.save(swipe);
     }
 }
