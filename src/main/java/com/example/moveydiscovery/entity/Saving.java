@@ -1,4 +1,4 @@
-package com.example.moveydiscovery;
+package com.example.moveydiscovery.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +10,16 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "swipe")
-public class Swipe {
+@Entity(name = "saving")
+public class Saving {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long movieId;
-    private Boolean liked;
+    private String userId;
+    private String movieId;
+
+    public Saving(String userId, String movieId) {
+        this.userId = userId;
+        this.movieId = movieId;
+    }
 }
