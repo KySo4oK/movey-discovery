@@ -1,7 +1,7 @@
 package com.example.moveydiscovery;
 
-import com.example.moveydiscovery.entity.Swipe;
-import com.example.moveydiscovery.service.SwipeService;
+import com.example.moveydiscovery.entity.Saving;
+import com.example.moveydiscovery.service.SavingsService;
 import lombok.Getter;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
@@ -17,13 +17,13 @@ import java.util.List;
 public class RabbitMqReceiver implements RabbitListenerConfigurer {
 
     @Autowired
-    SwipeService swipeService;
-    List<Swipe> swipes = new ArrayList<>();
+    SavingsService savingsService;
+    List<Saving> swipes = new ArrayList<>();
 
     @RabbitListener(queues = "${spring.rabbitmq.queue}")
-    public void receivedMessage(Swipe message) {
+    public void receivedMessage(Saving message) {
         swipes.add(message);
-        swipeService.save(message);
+        savingsService.save(message);
     }
 
     @Override
